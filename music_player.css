@@ -1,0 +1,54 @@
+body {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#song_img {
+  width: 25vw;
+  height: 25vw;
+  display: block;
+  margin: 100px auto;
+}
+#song_name {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  color: white;
+}
+i {
+  width: 100px;
+}
+#icons {
+  text-align: center;
+  display: block;
+  margin: auto;
+  margin-bottom: 0px;
+  color: whitesmoke;
+  cursor: pointer;
+}
+
+.seekBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#seekBar {
+  text-align: center;
+  width: 75vw;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+input {
+  width: 97vw;
+  margin: 20px auto;
+}
+
+@media (max-width: 320px) {
+  body {
+    margin-top: 400px;
+  }
+}

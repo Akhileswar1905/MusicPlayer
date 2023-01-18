@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Music player</title>
+    <script
+      src="https://kit.fontawesome.com/2d85133c8b.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="music_player.css" title="" type="" />
+  </head>
+  <body>
+    <header>
+      <figure>
+        <img id="song_img" src="song_pics/1.jpg" alt="" />
+        <figcaption id="song_name">Fairy Tale</figcaption>
+      </figure>
+    </header>
+
+    <div class="seekBar">
+      <input type="range" name="" id="seekBar" value="0" />
+    </div>
+
+    <section>
+      <div id="icons">
+        <i onclick="masterPrev()" class="fa-solid fa-backward"></i>
+        <i onclick="masterPlay()" id="play" class="fa-solid fa-play"></i>
+        <i onclick="masterNext()" class="fa-solid fa-forward"></i>
+      </div>
+    </section>
+
+    <script
+      src="music_player.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+  </body>
+</html>
