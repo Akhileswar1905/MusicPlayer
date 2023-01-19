@@ -47,7 +47,6 @@ function masterPlay() {
   if (play.className == "fa-solid fa-play") {
     play.className = "fa-solid fa-pause";
     audio.play();
-    // console.log(audio.currentTime);
     seek();
   } else {
     seekBar.value = 0;
