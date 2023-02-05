@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Music player</title>
     <link rel="stylesheet" href="style.css" />
     <script
@@ -10,24 +12,26 @@
     ></script>
   </head>
   <body>
-    <header>
-      <figure>
-        <img id="song_img" src="song_pics/1.jpg" alt="" />
-        <figcaption id="song_name">Fairy Tale</figcaption>
-      </figure>
-    </header>
+    <div class="container">
+      <header>
+        <figure>
+          <img id="song_img" src="song_pics/1.jpg" alt="" />
+          <figcaption id="song_name">Fairy Tale</figcaption>
+        </figure>
+      </header>
 
-    <div class="seekBar">
-      <input type="range" name="" id="seekBar" value="0" />
-    </div>
-
-    <section>
-      <div id="icons">
-        <i onclick="masterPrev()" class="fa-solid fa-backward"></i>
-        <i onclick="masterPlay()" id="play" class="fa-solid fa-play"></i>
-        <i onclick="masterNext()" class="fa-solid fa-forward"></i>
+      <div class="seekBar">
+        <input type="range" name="" id="seekBar" value="0" />
       </div>
-    </section>
+
+      <section>
+        <div id="icons">
+          <i onclick="masterPrev()" class="fa-solid fa-backward"></i>
+          <i onclick="masterPlay()" id="play" class="fa-solid fa-play"></i>
+          <i onclick="masterNext()" class="fa-solid fa-forward"></i>
+        </div>
+      </section>
+    </div>
 
     <script
       src="music_player.js"
