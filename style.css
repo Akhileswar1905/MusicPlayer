@@ -12,7 +12,7 @@ body {
   font-size: 2rem;
 }
 #song_img {
-  width: fit-content;
+  width: 20vw;
   height: fit-content;
   display: block;
   margin: 100px auto;
@@ -77,6 +77,9 @@ input {
     width: max-content;
     margin: 20px;
   }
+  #song_img {
+    width: 40vw;
+  }
 }
 
 @media screen and (max-width: 320px) {
@@ -93,5 +96,8 @@ input {
   i {
     width: max-content;
     margin: 20px;
+  }
+  #song_img {
+    width: 45vw;
   }
 }
