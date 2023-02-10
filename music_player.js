@@ -5,6 +5,7 @@ let seekBar = document.getElementById("seekBar");
 let time = document.getElementById("time");
 let index = 1;
 let audio = new Audio(`songs/${index}.mp3`);
+let container = document.querySelector(".container");
 
 let songsList = [
   "Fairy Tale",
@@ -23,6 +24,9 @@ let songsList = [
   "Master - Vaathi raid",
   "Yoasobi - Tabun",
 ];
+
+let colors = "#";
+const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "a", "b", "c", "d", "e", "f"];
 
 function seek() {
   audio.addEventListener("timeupdate", function () {
@@ -56,6 +60,14 @@ function masterPlay() {
 }
 
 function masterNext() {
+  for (let i = 0; i < 6; i++) {
+    colors += "" + nums[Math.floor(Math.random() * nums.length)];
+  }
+  console.log(colors);
+
+  document.body.style.backgroundColor = colors;
+  container.style.backgroundColor = colors;
+  colors = "#";
   seekBar.value = 0;
   if (index >= 1 && index < songsList.length) {
     audio.pause();
@@ -86,6 +98,14 @@ function masterNext() {
 }
 
 function masterPrev() {
+  for (let i = 0; i < 6; i++) {
+    colors += "" + nums[Math.floor(Math.random() * nums.length)];
+  }
+  console.log(colors);
+
+  document.body.style.backgroundColor = colors;
+  container.style.backgroundColor = colors;
+  colors = "#";
   if (index > 1 && index <= songsList.length) {
     index--;
     audio.pause();
