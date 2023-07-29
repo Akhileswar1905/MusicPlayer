@@ -3,38 +3,32 @@ let img = document.getElementById("song_img");
 let songName = document.getElementById("song_name");
 let seekBar = document.getElementById("seekBar");
 let time = document.getElementById("time");
-let index = 1;
-let audio = new Audio(`songs/${index}.mp3`);
+let index = 0;
+let audio = new Audio(
+  `https://firebasestorage.googleapis.com/v0/b/blazingsound-32357.appspot.com/o/after-hours-lyrics.mp3?alt=media&token=66af3c5f-7367-444b-bb73-4d59c142a664`
+);
 let container = document.querySelector(".container");
 
-let songsList = [
-  "Fairy Tale",
-  "Thunder",
-  "Blood//Water",
-  "Havana X Shape of you X Mi gente",
-  "Fight Back",
-  "Destiny",
-  "Fearless",
-  "Beast mode - Beast",
-  "Guess Who is Back - Black Clover",
-  "Yoasobi - Into the night",
-  "Master - Kutti Story",
-  "Master - Master the Blaster",
-  "Master - Vaathi coming",
-  "Master - Vaathi raid",
-  "Yoasobi - Tabun",
-];
+console.log(audio);
 
-let colors = "#";
-const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "a", "b", "c", "d", "e", "f"];
+let songs = [];
+fetch("../data.json")
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    songs = data;
+  })
+  .catch((error) => {
+    console.error("Error fetching JSON data:", error);
+  });
+
+console.log(index);
 
 function seek() {
   audio.addEventListener("timeupdate", function () {
     seekBar.value = 0;
     progress = parseInt((audio.currentTime / parseInt(audio.duration)) * 100);
     seekBar.value = progress;
-    console.log(progress);
-
     if (progress == 100) {
       console.log("Song completed");
       masterNext();
@@ -47,7 +41,7 @@ function seek() {
 }
 
 function masterPlay() {
-  console.log(parseInt(audio.duration));
+  //   console.log(parseInt(audio.duration));
   if (play.className == "fa-solid fa-play") {
     play.className = "fa-solid fa-pause";
     audio.play();
@@ -60,79 +54,62 @@ function masterPlay() {
 }
 
 function masterNext() {
-  for (let i = 0; i < 6; i++) {
-    colors += "" + nums[Math.floor(Math.random() * nums.length)];
-  }
-  console.log(colors);
-
-  document.body.style.backgroundColor = colors;
-  container.style.backgroundColor = colors;
-  colors = "#";
   seekBar.value = 0;
-  if (index >= 1 && index < songsList.length) {
+  if (index >= 0 && index < songs.length - 1) {
     audio.pause();
-    audio = new Audio(`songs/${index + 1}.mp3`);
+    index++;
+    audio = new Audio(songs[index].link);
     audio.play();
     seek();
     if (play.className == "fa-solid fa-play") {
       play.className = "fa-solid fa-pause";
     }
-    img.src = `song_pics/${index + 1}.jpg`;
-    songName.textContent = songsList[index];
-    index++;
+    img.src = songs[index].img;
+    songName.textContent = songs[index].name;
   } else {
-    if (index >= songsList.length || seekBar.value == 100) {
+    if (index == songs.length - 1 || seekBar.value == 100) {
       seekBar.value = 0;
-      index = 1;
+      index = 0;
       audio.pause();
-      audio = new Audio(`songs/${index}.mp3`);
+      audio = new Audio(songs[index].link);
       audio.play();
       seek();
       if (play.className == "fa-solid fa-play") {
         play.className = "fa-solid fa-pause";
       }
-      songName.textContent = songsList[index - 1];
-      img.src = `song_pics/${index}.jpg`;
+      songName.textContent = songs[index].name;
+      img.src = songs[index].img;
     }
   }
 }
 
 function masterPrev() {
-  for (let i = 0; i < 6; i++) {
-    colors += "" + nums[Math.floor(Math.random() * nums.length)];
-  }
-  console.log(colors);
-
-  document.body.style.backgroundColor = colors;
-  container.style.backgroundColor = colors;
-  colors = "#";
-  if (index > 1 && index <= songsList.length) {
-    index--;
+  if (index > 0 && index < songs.length) {
+    console.log(index);
     audio.pause();
-
-    audio = new Audio(`songs/${index}.mp3`);
-
+    index--;
+    audio = new Audio(songs[index].link);
     seekBar.value = 0;
     audio.play();
     seek();
     if (play.className == "fa-solid fa-play") {
       play.className = "fa-solid fa-pause";
     }
-    songName.textContent = songsList[index - 1];
-    img.src = `song_pics/${index}.jpg`;
+    songName.textContent = songs[index].name;
+    img.src = songs[index].img;
   } else {
-    if (index <= 1) {
-      index = songsList.length;
+    if (index == 0) {
       audio.pause();
-      audio = new Audio(`songs/${index}.mp3`);
+      index = songs.length - 1;
+      audio = new Audio(songs[index].link);
       seekBar.value = 0;
       audio.play();
       seek();
       if (play.className == "fa-solid fa-play") {
         play.className = "fa-solid fa-pause";
       }
-      songName.textContent = songsList[index - 1];
-      img.src = `song_pics/${index}.jpg`;
+      songName.textContent = songs[index].name;
+      img.src = songs[index].img;
     }
   }
 }
